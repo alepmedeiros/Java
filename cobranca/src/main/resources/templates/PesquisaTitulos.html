@@ -7,11 +7,14 @@
 	<title>Pesquisa de título</title>
 </head>
 <section layout:fragment="conteudo">
+<div layout:include="MensagemGeral"></div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="clearfix">
 				<h1 class="panel-title am-titulo-panel">Pesquisa de titulos</h1>
-				<a class="btn btn-link am-link-panel" href="/titulos/novo">Novo titulo</a>
+				<a class="btn btn-link btn-xs am-link-panel" href="/titulos/novo">
+					<span class="glyphicon glyphicon-new-window"></span>
+				</a>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -36,7 +39,22 @@
 							<span class="label" th:text="${titulo.status.descricao}"
 								th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
 						</td>
-						<td class="text-center"></td>																							
+						<td class="text-center">
+							<a class="btn btn-link btn-xs" th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+							title="Editar" rel="tooltip" data-placement="top">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
+							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confExclusaoModal"
+							th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
+							title="Excluir" rel="tooltip" data-placement="top">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+							<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}" 
+								title="Receber" rel="tooltip" data-placement="top"
+								th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
+								<span class="glyphicon glyphicon-check"></span>
+							</a>
+						</td>																							
 					</tr>
 					<tr>
 						<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum titulo encontrado</td>
@@ -44,6 +62,7 @@
 				</tbody>
 			</table>
 		</div>
+		<div layout:include="DialogoConfExclucao"></div>
 	</div>
 </section>
 </html>
