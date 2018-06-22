@@ -1,0 +1,53 @@
+.tiloTabela{
+	font-size: 0.95;
+	font-style: italic;;
+}
+
+.tabela{
+	border : thin solid #0000a0;
+	background: ;
+}
+
+.tabelaCabecalho{
+	text-align: center;
+	font-style: italic;
+	color: white;
+	background: blue;
+}
+
+.tabelaRodape{
+	text-align: right;
+	color: white;
+	background: blue;
+}
+
+.colunaCabecalho{
+	font-style: italic;
+	text-align: center;
+	font-size: 0.3cm;
+	color: green;
+	background: aqua;
+}
+
+.primeiraColuna{
+	text-align: center;
+	background: silver;	
+}
+.segundaColuna{
+	text-align: center;
+	background: gray;	
+}
+
+.terceiraColuna{
+	text-align: center;
+	background: green;	
+}
+
+.primeiraLinha{
+	text-align: center;
+	background: silver;	
+}
+.segundaLinha{
+	text-align: center;
+	background: gray;	
+}

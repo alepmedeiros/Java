@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<f:view encoding="ISO-8859-1" contentType="text/html">
+	<h:head>
+		<title>Exemplo de tabela editavel</title>
+		<h:outputStylesheet library="css" name="estilos.css"/>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:dataTable value="#{controleTabela.lista}" var="obj"
+			captionClass="tiloTabela" headerClass="tabelaCabecalho"
+			footerClass="tabelaRodape" rowClasses="primeiraLinha,segundaLinha" 
+			frame="box" rules="all" cellspacing="3">
+				<f:facet name="header">Lista de pessoas</f:facet>
+				<f:facet name="footer">Total: #{controleTabela.lista.size()}<br/>
+					<h:commandButton action="#{controleTabela.salvar}" value="Salvar"/>
+				</f:facet>
+				<h:column>
+					<f:facet name="header">#</f:facet>
+					<h:outputText value="#{obj.id}" rendered="#{!obj.editando}"/>
+					<h:inputText value="#{obj.id}" rendered="#{obj.editando}" size="5"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{obj.nome}" rendered="#{!obj.editando}"/>
+					<h:inputText value="#{obj.nome}" rendered="#{obj.editando}" size="30"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Telefone</f:facet>
+					<h:outputText value="#{obj.telefone}" rendered="#{!obj.editando}"/>
+					<h:inputText value="#{obj.telefone}" rendered="#{obj.editando}" size="15"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:selectBooleanCheckbox value="#{obj.editando}" onclick="submit()"/>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Excluir" action="#{controleTabela.excluir(obj)}"
+						onclick="if (!confirm('Confirma a exclusão da pessoa #{obj.nome}')) return false"/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</h:body>
+</f:view>
+</html>
